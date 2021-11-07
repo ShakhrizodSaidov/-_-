@@ -1,0 +1,81 @@
+	1.Answer
+select film_id, title, description, release_year
+from film;
+
+	2.Answer
+select film_id as "FilmId", title as "FilmTitle", description as "FilmDescription", release_year as "FilmRelease_year"
+from film ;
+
+	3.Answer
+select title, round(rental_rate/rental_duration,2) as Cost_Per_Day
+from film f;
+
+	4.Answer
+select title as "TitleFilms", round(rental_rate/rental_duration,2) as Cost_Per_Day
+from film f
+order by Cost_Per_Day desc;
+
+	5.Answer
+select title as "TitleFilms", round(rental_rate/rental_duration,2) as Cost_Per_Day
+from film f
+order by Cost_Per_Day desc
+limit 10;
+	6. Answer
+select distinct release_year 
+from film f ;
+
+	7.Answer
+select count(distinct customer_id)
+from customer c ;
+
+	8.Answer
+select concat(title,'-',length) as FilmTitle, release_year ,rating ,release_year 
+from film f 
+where rating='PG-13'
+order by FilmTitle
+
+	9.Answer
+select distinct f.title as "Film", l.name as "Language"
+from film f
+join language l
+on l.language_id =f.language_id 
+order by f.title 
+
+	10.Answer
+select a.first_name ,a.last_name 
+from actor a
+join film_actor fa 
+on fa.actor_id =a.actor_id 
+where fa.film_id =508
+order by a.first_name ,a.last_name 
+
+	11.Answer
+select count(a.actor_id) as "Count of Actors", fa.film_id 
+from actor a
+join film_actor fa 
+on fa.actor_id =a.actor_id 
+group by fa.film_id 
+having fa.film_id =384
+
+	12.Answer
+select f.title
+from film f 
+join film_actor fa 
+using (film_id)
+group by film_id 
+having count(fa.actor_id)>10
+
+	13.Answer
+select count(film_id), (f.rental_rate/f.rental_duration) as rental_per_day
+from film f 
+group by rental_duration,rental_rate 
+having rental_rate/rental_duration>(select avg(rental_rate/rental_duration) from film f )
+
+	14.Answer
+select f.title, c.name
+from film f 
+left join film_category fc 
+using (film_id)
+left join category c 
+using (category_id)
+where c.name like 'C%'

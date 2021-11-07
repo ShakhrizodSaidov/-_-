@@ -1,0 +1,56 @@
+create table Table1(
+id_languages serial primary key,
+first_name varchar(50) not null,
+last_name varchar(50) not null,
+languages varchar(50)not null);
+
+create table Table2(
+id_nationalities serial primary key,
+first_name varchar(50) not null,
+last_name varchar(50) not null,
+nationalities varchar(50) not null);
+
+create table Table3(
+id_countries serial primary key,
+first_name varchar(50) not null,
+last_name varchar(50) not null,
+countries varchar(50)not null);
+
+
+
+
+insert into Table1 (first_name,last_name,languages)
+values
+('Eric', 'Endrew', 'english'),
+('Nodir', 'Rusalnov', 'kazak'),
+('John', 'Simson', 'russian'),
+('Mattew', 'Alexeevich', 'english'),
+('Alex', 'Louis', 'russain'),
+('Mario', 'Amirian', 'Russia'),
+('Wiltson', 'Krishna', 'hindi')
+
+insert into Table2 (first_name,last_name,nationalities)
+values
+('Eric', 'Endrew', 'american'),
+('Nodir', 'Rusalnov', 'kazakian'),
+('John', 'Simson', 'russian'),
+('Mattew', 'Alexeevich', 'russan'),
+('Alex', 'Louis', 'russain'),
+('Mario', 'Amirian', 'british'),
+('Wiltson', 'Krishna', 'indian')
+
+insert into Table3 (first_name,last_name,countries)
+values
+('Eric', 'Endrew', 'USA'),
+('Nodir', 'Rusalnov', 'Kazakistan'),
+('John', 'Simson', 'Russia'),
+('Mattew', 'Alexeevich', 'Russia'),
+('Alex', 'Louis', 'Russia'),
+('Mario', 'Amirian', 'Great Britan'),
+('Wiltson', 'Krishna', 'India')
+select * from Table1 
+select * from Table2 
+select * from Table3
+alter table table2 add constraint table2_table1_fkey foreign key (table2_id) references table1 (id_languages)
+alter table table3 add constraint table2_table3_fkey foreign key (table3_id) references table2 (id_nationalities)
+alter table table1 add constraint table1_table3_fkey foreign key (table1_id) references table3 (id_countries)
